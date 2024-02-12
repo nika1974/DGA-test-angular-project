@@ -1,0 +1,28 @@
+:host {
+    .main-wrapper {
+        margin: 10px;
+    }
+
+    .menu {
+        margin: 15px;
+        button, .mat-divider {
+            margin: 10px;
+        }
+    }
+
+    .loading-container {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        
+        background-color: #0000004d;
+        backdrop-filter: blur(2px);
+        z-index: 9999;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

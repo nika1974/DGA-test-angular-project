@@ -1,0 +1,46 @@
+:host {
+    .job-description {
+        width: 70vw;
+        font-size: 12px;
+        &-form {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f6f2f2;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+    
+            display: flex;
+            flex-direction: column;
+
+            &.positions {
+                background-color: #dbdde4;
+            }
+        }
+
+        &-add-job {
+            min-width: 50%;
+            width: 50%;
+        }
+
+        &-remove {
+            margin-bottom: 20px;
+            min-width: 30%;
+            width: 30%;
+        }
+
+        &-dates {
+            display: flex;
+            justify-content: space-between;
+            mat-form-field {
+                width: 30%;
+            }
+        }
+    }
+    .no-data-message {
+        margin: 20px;
+    }
+
+    app-custom-text-input {
+        margin-bottom: 10px;
+    }
+}

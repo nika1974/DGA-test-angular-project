@@ -1,0 +1,9 @@
+<div class="calendar">
+    <div class="calendar-title">{{months[currentMonth]}} {{currentYear}}</div>
+    <div class="day weekday" *ngFor="let weekday of weekDays">{{weekday}}</div>
+    <div class="day not-current-month" *ngFor="let day of prefixArr">{{day.day}}</div>
+    <div class="day" [class.holiday]="day.isHoliday" *ngFor="let day of daysInMonth">
+        <span [class.today]="day.isToday">{{ day.day }}</span>
+    </div>
+    <div class="day not-current-month" *ngFor="let day of suffixArr">{{day.day}}</div>
+</div>

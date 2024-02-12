@@ -1,0 +1,54 @@
+:host {
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 100px);
+    grid-template-rows: 100px 40px 100px 100px 100px 100px 100px;
+    text-align: right;
+    border: 1px solid #b1abab;
+    width: fit-content;
+    height: 640px;
+
+    background: #231e29;
+    color: #fff;
+
+    &-title {
+      grid-area: 1/1/2/8;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      font-size: 40px;
+      font-weight: 800;
+    }
+  }
+  
+  .day {
+    padding: 5px;
+    border: 1px solid #b1abab;
+    font-weight: 800;
+  }
+
+  .holiday {
+    background-color: #1f4732;
+  }
+
+  .weekday {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .not-current-month {
+    color: #ffffff42;
+  }
+
+  .today {
+    border-radius: 50%;
+    background: #ff453a;
+    padding: 5px;
+    color: #231e29;
+  }
+  
+}

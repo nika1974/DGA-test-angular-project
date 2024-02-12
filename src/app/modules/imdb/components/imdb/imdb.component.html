@@ -1,0 +1,33 @@
+<div class="search-controls">
+    <app-custom-text-input [formControl]="searchControl">
+        Search the movie
+    </app-custom-text-input>
+    <button mat-raised-button color="primary" (click)="handleSearch()">Search</button>
+</div>
+
+<div class="search-content">
+    <ng-container *ngIf="!searching; else searchingContent">
+        <ng-container *ngIf="movies?.length; else noContent">
+            <mat-card *ngFor="let movie of movies">
+                <mat-card-title>{{movie.title}}</mat-card-title>
+                <mat-card-subtitle>Release date: {{movie.year}}</mat-card-subtitle>
+                <img *ngIf="movie.image?.url; else noImage" [ngSrc]="movie.image.url" width="300" height="200">
+                <ng-template #noImage>
+                    <div class="no-image">
+                        No image
+                    </div>
+                </ng-template>
+            </mat-card>
+        </ng-container>
+        <ng-template #noContent>
+            No movies to display
+        </ng-template>
+    </ng-container>
+    <ng-template #searchingContent>
+        <div class="no-content-wrapper">
+            <div class="ghost-loader" *ngFor="let dummy of dummyArray">
+                <mat-card appGhostLoader></mat-card>
+            </div>
+        </div>
+    </ng-template>
+</div>

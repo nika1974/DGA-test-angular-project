@@ -1,0 +1,111 @@
+<div class="job-description">
+    <button
+        mat-raised-button
+        class="job-description-add-job"
+        color="primary"
+        (click)="handleJobAddition()">
+        Add Job
+    </button>
+
+    <ng-container *ngIf="jobsForm && jobs.controls.length; else noJobsTemplate" [formGroup]="jobsForm">
+        <ng-container formArrayName="jobs">
+            <ng-container [formGroupName]="jobIndex" *ngFor="let form of jobs.controls; let jobIndex = index">
+                <div class="job-description-form">
+                    <button
+                        mat-raised-button
+                        class="job-description-remove"
+                        color="warn"
+                        (click)="handleJobRemove(jobs, jobIndex)">
+                        Remove Job
+                    </button>
+                    <app-custom-text-input formControlName="companyName">
+                        Enter company name
+                    </app-custom-text-input>
+                    <app-custom-text-input formControlName="companyWebsite" type="website">
+                        Enter company web page
+                    </app-custom-text-input>
+                    <app-custom-text-input formControlName="companyDescription" type="text">
+                        Enter company description
+                    </app-custom-text-input>
+                    <ng-container formArrayName="position">
+                        <button
+                            mat-raised-button
+                            class="job-description-add-position"
+                            color="primary"
+                            (click)="handlePositionAddition(jobIndex)">
+                            Add Position
+                        </button>
+                        <ng-container *ngIf="getPositionsFormArray(jobIndex)?.controls?.length; else noPositionsTemplate">
+                            <ng-container [formGroupName]="positionIndex" *ngFor="let position of getPositionsFormArray(jobIndex)?.controls; let positionIndex = index">
+                                <div class="job-description-form positions">
+                                    <button
+                                        mat-raised-button
+                                        class="job-description-remove"
+                                        color="warn"
+                                        (click)="handleJobRemove(getPositionsFormArray(jobIndex), positionIndex)">
+                                        Remove Position
+                                    </button>
+                                    <app-custom-text-input formControlName="positionName">
+                                        Enter position name
+                                    </app-custom-text-input>
+                                    <app-custom-text-input formControlName="positionLevel">
+                                        Enter position level
+                                    </app-custom-text-input>
+                                    <app-custom-text-input formControlName="positionDescription" type="text">
+                                        Enter position description
+                                    </app-custom-text-input>
+                                    <div class="job-description-dates">
+                                        <mat-form-field>
+                                            <mat-label>From</mat-label>
+                                            <input matInput [matDatepicker]="form" formControlName="positionStartDate" (dateChange)="handleDateChange('from', $event.value, jobIndex, positionIndex)">
+                                            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                                            <mat-datepicker-toggle matIconSuffix [for]="form"></mat-datepicker-toggle>
+                                            <mat-datepicker #form></mat-datepicker>
+                                            <mat-error *ngIf="getDateErrors(jobIndex, positionIndex, 'positionStartDate', 'required')">The field is required</mat-error>
+                                            <mat-error *ngIf="getDateErrors(jobIndex, positionIndex, 'positionStartDate', 'maxDate')">From date cannot be higher than To date</mat-error>
+                                          </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>to</mat-label>
+                                            <input matInput [matDatepicker]="to" formControlName="positionEndDate" (dateChange)="handleDateChange('to', $event.value, jobIndex, positionIndex)">
+                                            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                                            <mat-datepicker-toggle matIconSuffix [for]="to"></mat-datepicker-toggle>
+                                            <mat-datepicker #to></mat-datepicker>
+                                            <mat-error *ngIf="getDateErrors(jobIndex, positionIndex, 'positionEndDate', 'required')">The field is required</mat-error>
+                                            <mat-error *ngIf="getDateErrors(jobIndex, positionIndex, 'positionEndDate', 'minDate')">To date cannot be less than From date</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <!-- From - to ს ალტერნატივა იქნება მატერიალის დეით რეინჯი -->
+                                    <!-- ვაკომენტარებ და ვტოვებ -->
+
+                                    <!-- <mat-form-field>
+                                        <mat-label>Enter a date range</mat-label>
+                                        <mat-date-range-input [rangePicker]="picker">
+                                          <input matStartDate placeholder="Start date">
+                                          <input matEndDate placeholder="End date">
+                                        </mat-date-range-input>
+                                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #picker></mat-date-range-picker>
+                                    </mat-form-field> -->
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #noJobsTemplate>
+        <div class="no-data-message">
+            No jobs to display
+        </div>
+    </ng-template>
+
+    <ng-template #noPositionsTemplate>
+        <div class="no-data-message">
+            No positions to display
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,47 @@
+:host {
+    .search-controls {
+        display: flex;
+        justify-content: flex-start;
+
+        button {
+            margin-top: 4px;
+            margin-left: 15px;
+        }
+    }
+
+    .search-content, .no-content-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    mat-card {
+        width: 300px;
+        height: 300px;
+        margin: 10px;
+        background: #fbfbfb;
+        overflow: hidden;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    mat-card-title {
+        text-align: center;
+        padding: 5px 10px;
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    mat-card-subtitle {
+        text-align: center;
+    }
+
+    .no-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 70px;
+    }
+}

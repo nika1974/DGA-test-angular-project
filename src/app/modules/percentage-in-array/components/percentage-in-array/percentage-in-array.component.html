@@ -1,0 +1,13 @@
+<div>Query: {{value1}}</div>
+<br>
+
+List:&nbsp;&nbsp;
+[<span *ngFor="let value of value2; let last = last">„{{value}}“{{!last ? ', ' : ''}}</span>]
+<br><br>
+
+<div class="match" *ngFor="let match of matchesArray">
+    <div>
+        Value: <span highlighter [searchQuery]="match.matchedQuery" [text]="match.value">{{match.value}}</span>
+        &nbsp;&nbsp;-&nbsp;&nbsp; Match percentage: {{match.matchingPercentage}}%
+    </div>
+</div>

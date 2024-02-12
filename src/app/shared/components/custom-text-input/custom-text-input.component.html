@@ -1,0 +1,11 @@
+<mat-form-field>
+    <mat-label>
+        <ng-content></ng-content>
+    </mat-label>
+    <input matInput [formControl]="control" *ngIf="type !== 'text'; else textarea">
+    <ng-template #textarea>
+        <textarea matInput [formControl]="control"></textarea>
+    </ng-template>
+    <mat-error *ngIf="control.errors?.['required']">The field is required</mat-error>
+    <mat-error *ngIf="control.errors?.[type]">{{control.errors?.[type].value}}</mat-error>
+</mat-form-field>
